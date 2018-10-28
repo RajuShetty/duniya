@@ -3,6 +3,7 @@ runtime: php72
 env_variables:
   APP_ENV: prod
   APP_SECRET: 228133659488
+  DATABASE_URL: mysql://root:duniyapassnew@localhost?unix_socket=/cloudsql/status-duniya:asia-east1:duniyadb;dbname=symfonydb
   # APP_DEBUG: true
 
   ## For connecting to Cloud SQL with Doctrine
