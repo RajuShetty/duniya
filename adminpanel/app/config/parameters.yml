@@ -8,9 +8,9 @@ parameters:
     
 
     # Set sane environment variable defaults.
-    env(DB_HOST): ""
-    env(DB_PORT): 3306
-    env(DB_SOCKET): ""
+    #env(DB_HOST): ""
+    #env(DB_PORT): 3306
+    #env(DB_SOCKET): ""
 
     # Mailer configuration
     # ...
