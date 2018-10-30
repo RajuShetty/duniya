@@ -1,16 +1,16 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: '127.0.0.1'
-    database_name: 'duniyadb%'
-    database_port: '3306%'
-    database_user: 'root'
-    database_password: 'duniyanewpass'
-    
+    database_host: '%env(DB_HOST)%'
+    database_name: '%env(DB_DATABASE)%'
+    database_port: '%env(DB_PORT)%'
+    database_user: '%env(DB_USERNAME)%'
+    database_password: '%env(DB_PASSWORD)%'
+    database_socket: '%env(DB_SOCKET)%'
 
     # Set sane environment variable defaults.
-    #env(DB_HOST): ""
-    #env(DB_PORT): 3306
-    #env(DB_SOCKET): ""
+    env(DB_HOST): ""
+    env(DB_PORT): 3306
+    env(DB_SOCKET): ""
 
     # Mailer configuration
     # ...
