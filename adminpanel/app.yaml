@@ -9,7 +9,7 @@ runtime: php
   ## Set these environment variables according to your CloudSQL configuration.
   DB_DATABASE: symfony
   DB_USERNAME: root
-  DB_PASSWORD: YOUR_DB_PASSWORD
+  DB_PASSWORD: duniyanewpass
   DB_SOCKET: "/cloudsql/status-duniya:asia-east1:duniyadb"
 
 beta_settings:
