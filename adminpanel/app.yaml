@@ -10,10 +10,10 @@ runtime: php
   DB_DATABASE: duniya
   DB_USERNAME: root
   DB_PASSWORD: Raju@123
-  DB_SOCKET: "/cloudsql/status-duniya:asia-east1:duniyadb"
+  DB_SOCKET: "/cloudsql/status-duniya:asia-south1-a:duniya2"
 
 beta_settings:
   # for Cloud SQL, set this value to the Cloud SQL connection name,
   # e.g. "project:region:cloudsql-instance"
-  cloud_sql_instances: "status-duniya:asia-east1:duniyadb"
+  cloud_sql_instances: "status-duniya:asia-south1-a:duniya2"
    
