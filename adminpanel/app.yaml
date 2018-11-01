@@ -1,11 +1,12 @@
 runtime: php55
+env: flex
 api_version: 1
 
     runtime_config:
       document_root: web
       front_controller_file: app.php
       
-      env_variables:
+ 
   ## Set these environment variables according to your CloudSQL configuration.
   DB_DATABASE: duniya
   DB_USERNAME: root
