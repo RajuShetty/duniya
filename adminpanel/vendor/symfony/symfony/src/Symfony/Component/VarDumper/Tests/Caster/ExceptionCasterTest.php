@@ -17,20 +17,20 @@ use Symfony\Component\VarDumper\Test\VarDumperTestCase;
 class ExceptionCasterTest extends VarDumperTestCase
 {
     /**
-     * @requires function Twig_Template::getSourceContext
+     * @requires function Twig\Template::getSourceContext
      */
     public function testFrameWithTwig()
     {
-        require_once dirname(__DIR__).'/Fixtures/Twig.php';
+        require_once \dirname(__DIR__).'/Fixtures/Twig.php';
 
         $f = array(
             new FrameStub(array(
-                'file' => dirname(__DIR__).'/Fixtures/Twig.php',
+                'file' => \dirname(__DIR__).'/Fixtures/Twig.php',
                 'line' => 21,
                 'class' => '__TwigTemplate_VarDumperFixture_u75a09',
             )),
             new FrameStub(array(
-                'file' => dirname(__DIR__).'/Fixtures/Twig.php',
+                'file' => \dirname(__DIR__).'/Fixtures/Twig.php',
                 'line' => 21,
                 'class' => '__TwigTemplate_VarDumperFixture_u75a09',
                 'object' => new \__TwigTemplate_VarDumperFixture_u75a09(null, false),

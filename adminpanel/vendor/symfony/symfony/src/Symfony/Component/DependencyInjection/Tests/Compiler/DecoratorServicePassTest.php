@@ -11,11 +11,12 @@
 
 namespace Symfony\Component\DependencyInjection\Tests\Compiler;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Alias;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\DecoratorServicePass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class DecoratorServicePassTest extends \PHPUnit_Framework_TestCase
+class DecoratorServicePassTest extends TestCase
 {
     public function testProcessWithoutAlias()
     {

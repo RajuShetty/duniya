@@ -12,14 +12,14 @@
 namespace Symfony\Component\Form\Tests\Extension\Validator\Type;
 
 use Symfony\Component\Form\Extension\Validator\Type\UploadValidatorExtension;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UploadValidatorExtensionTest extends TypeTestCase
 {
     public function testPostMaxSizeTranslation()
     {
-        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $translator = $this->getMockBuilder('Symfony\Component\Translation\TranslatorInterface')->getMock();
 
         $translator->expects($this->any())
             ->method('trans')
@@ -39,6 +39,6 @@ class UploadValidatorExtensionTest extends TypeTestCase
         $extension->configureOptions($resolver);
         $options = $resolver->resolve();
 
-        $this->assertEquals('translated max {{ max }}!', call_user_func($options['upload_max_size_message']));
+        $this->assertEquals('translated max {{ max }}!', \call_user_func($options['upload_max_size_message']));
     }
 }

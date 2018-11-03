@@ -12,21 +12,22 @@
 namespace Symfony\Component\Serializer\Tests\Normalizer;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
+use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Tests\Fixtures\CircularReferenceDummy;
-use Symfony\Component\Serializer\Tests\Fixtures\SiblingHolder;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Tests\Fixtures\GroupDummy;
+use Symfony\Component\Serializer\Tests\Fixtures\SiblingHolder;
 
 /**
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
+class ObjectNormalizerTest extends TestCase
 {
     /**
      * @var ObjectNormalizer
@@ -39,7 +40,7 @@ class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->serializer = $this->getMock(__NAMESPACE__.'\ObjectSerializerNormalizer');
+        $this->serializer = $this->getMockBuilder(__NAMESPACE__.'\ObjectSerializerNormalizer')->getMock();
         $this->normalizer = new ObjectNormalizer();
         $this->normalizer->setSerializer($this->serializer);
     }
@@ -400,7 +401,7 @@ class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
             array(
                 array(
                     'bar' => function ($bars) {
-                        return count($bars);
+                        return \count($bars);
                     },
                 ),
                 array(new ObjectConstructorDummy('baz', '', false), new ObjectConstructorDummy('quux', '', false)),
@@ -416,7 +417,7 @@ class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUnableToNormalizeObjectAttribute()
     {
-        $serializer = $this->getMock('Symfony\Component\Serializer\SerializerInterface');
+        $serializer = $this->getMockBuilder('Symfony\Component\Serializer\SerializerInterface')->getMock();
         $this->normalizer->setSerializer($serializer);
 
         $obj = new ObjectDummy();
@@ -460,7 +461,7 @@ class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
         $serializer = new Serializer(array($this->normalizer));
         $this->normalizer->setSerializer($serializer);
         $this->normalizer->setCircularReferenceHandler(function ($obj) {
-            return get_class($obj);
+            return \get_class($obj);
         });
 
         $obj = new CircularReferenceDummy();
@@ -485,6 +486,11 @@ class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
     public function testNormalizeStatic()
     {
         $this->assertEquals(array('foo' => 'K'), $this->normalizer->normalize(new ObjectWithStaticPropertiesAndMethods()));
+    }
+
+    public function testNormalizeUpperCaseAttributes()
+    {
+        $this->assertEquals(array('Foo' => 'Foo', 'Bar' => 'BarBar'), $this->normalizer->normalize(new ObjectWithUpperCaseAttributeNames()));
     }
 
     public function testNormalizeNotSerializableContext()
@@ -659,5 +665,16 @@ class ObjectWithStaticPropertiesAndMethods
     public static function getBaz()
     {
         return 'L';
+    }
+}
+
+class ObjectWithUpperCaseAttributeNames
+{
+    private $Foo = 'Foo';
+    public $Bar = 'BarBar';
+
+    public function getFoo()
+    {
+        return $this->Foo;
     }
 }

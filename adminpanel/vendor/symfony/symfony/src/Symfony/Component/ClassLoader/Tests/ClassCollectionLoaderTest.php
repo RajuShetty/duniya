@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\ClassLoader\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\ClassLoader\ClassCollectionLoader;
 
 require_once __DIR__.'/Fixtures/ClassesWithParents/GInterface.php';
@@ -18,7 +19,7 @@ require_once __DIR__.'/Fixtures/ClassesWithParents/CInterface.php';
 require_once __DIR__.'/Fixtures/ClassesWithParents/B.php';
 require_once __DIR__.'/Fixtures/ClassesWithParents/A.php';
 
-class ClassCollectionLoaderTest extends \PHPUnit_Framework_TestCase
+class ClassCollectionLoaderTest extends TestCase
 {
     /**
      * @requires PHP 5.4
@@ -232,7 +233,7 @@ class ClassCollectionLoaderTest extends \PHPUnit_Framework_TestCase
             }
         });
 
-        $strictTypes = defined('HHVM_VERSION') ? '' : "\nnamespace {require __DIR__.'/Fixtures/Namespaced/WithStrictTypes.php';}";
+        $strictTypes = \defined('HHVM_VERSION') ? '' : "\nnamespace {require __DIR__.'/Fixtures/Namespaced/WithStrictTypes.php';}";
 
         ClassCollectionLoader::load(
             array('Namespaced\\WithComments', 'Pearlike_WithComments', 'Namespaced\\WithDirMagic', 'Namespaced\\WithFileMagic', 'Namespaced\\WithHaltCompiler', $strictTypes ? 'Namespaced\\WithStrictTypes' : 'Namespaced\\WithComments'),

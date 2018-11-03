@@ -32,7 +32,7 @@ class ServerStatusCommand extends ServerCommand
     {
         $this
             ->setDefinition(array(
-                new InputArgument('address', InputArgument::OPTIONAL, 'Address:port', '127.0.0.1:8000'),
+                new InputArgument('address', InputArgument::OPTIONAL, 'Address:port', '127.0.0.1'),
                 new InputOption('port', 'p', InputOption::VALUE_REQUIRED, 'Address port number', '8000'),
             ))
             ->setName('server:status')
@@ -49,7 +49,7 @@ class ServerStatusCommand extends ServerCommand
         $address = $input->getArgument('address');
 
         if (false === strpos($address, ':')) {
-            $address = $address.':'.$input->getOption('port');
+            $address .= ':'.$input->getOption('port');
         }
 
         // remove an orphaned lock file

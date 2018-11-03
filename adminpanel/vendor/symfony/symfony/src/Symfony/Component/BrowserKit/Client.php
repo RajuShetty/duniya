@@ -12,8 +12,8 @@
 namespace Symfony\Component\BrowserKit;
 
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\DomCrawler\Link;
 use Symfony\Component\DomCrawler\Form;
+use Symfony\Component\DomCrawler\Link;
 use Symfony\Component\Process\PhpProcess;
 
 /**
@@ -45,8 +45,6 @@ abstract class Client
     private $isMainRequest = true;
 
     /**
-     * Constructor.
-     *
      * @param array     $server    The server parameters (equivalent of $_SERVER)
      * @param History   $history   A History instance to store the browser history
      * @param CookieJar $cookieJar A CookieJar instance to store the cookies
@@ -233,8 +231,6 @@ abstract class Client
 
     /**
      * Clicks on a given link.
-     *
-     * @param Link $link A Link instance
      *
      * @return Crawler
      */
@@ -468,13 +464,14 @@ abstract class Client
 
         if (-1 !== $this->maxRedirects) {
             if ($this->redirectCount > $this->maxRedirects) {
+                $this->redirectCount = 0;
                 throw new \LogicException(sprintf('The maximum number (%d) of redirections was reached.', $this->maxRedirects));
             }
         }
 
         $request = $this->internalRequest;
 
-        if (in_array($this->internalResponse->getStatus(), array(302, 303))) {
+        if (\in_array($this->internalResponse->getStatus(), array(302, 303))) {
             $method = 'GET';
             $files = array();
             $content = null;

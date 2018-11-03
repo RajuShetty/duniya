@@ -74,11 +74,6 @@ class ResourceCheckerConfigCache implements ConfigCacheInterface
 
         $metadata = $this->getMetaFile();
         if (!is_file($metadata)) {
-            return true;
-        }
-
-        $metadata = $this->getMetaFile();
-        if (!is_file($metadata)) {
             return false;
         }
 
@@ -154,6 +149,10 @@ class ResourceCheckerConfigCache implements ConfigCacheInterface
             } catch (IOException $e) {
                 // discard chmod failure (some filesystem may not support it)
             }
+        }
+
+        if (\function_exists('opcache_invalidate') && filter_var(ini_get('opcache.enable'), FILTER_VALIDATE_BOOLEAN)) {
+            @opcache_invalidate($this->file, true);
         }
     }
 

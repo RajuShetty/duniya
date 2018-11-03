@@ -1,5 +1,5 @@
 {
-    "Version": "2.1.22.93",
+    "Version": "2.1.41.97",
     "Names": {
         "AC": "Ascensioni saar",
         "AD": "Andorra",
@@ -10,7 +10,7 @@
         "AL": "Albaania",
         "AM": "Armeenia",
         "AO": "Angola",
-        "AQ": "Antarktis",
+        "AQ": "Antarktika",
         "AR": "Argentina",
         "AS": "Ameerika Samoa",
         "AT": "Austria",
@@ -27,7 +27,7 @@
         "BH": "Bahrein",
         "BI": "Burundi",
         "BJ": "Benin",
-        "BL": "Saint Barthélemy",
+        "BL": "Saint-Barthélemy",
         "BM": "Bermuda",
         "BN": "Brunei",
         "BO": "Boliivia",
@@ -182,7 +182,7 @@
         "PH": "Filipiinid",
         "PK": "Pakistan",
         "PL": "Poola",
-        "PM": "Saint Pierre ja Miquelon",
+        "PM": "Saint-Pierre ja Miquelon",
         "PN": "Pitcairni saared",
         "PR": "Puerto Rico",
         "PS": "Palestiina alad",
